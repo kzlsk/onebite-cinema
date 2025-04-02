@@ -3,6 +3,7 @@ import SearchableLayout from "@/components/searchable-layout";
 import movies from "@/mock/dummy.json";
 import MovieItem from "@/components/movie-item";
 import { useRouter } from "next/router";
+import style from "./search.module.css";
 
 export default function Page() {
   const router = useRouter();
@@ -13,16 +14,14 @@ export default function Page() {
   const filteredMovies = movies.filter((movie) => movie.title.includes(query));
 
   return (
-    <div>
-      <section>
-        {/* 검색어가 비어 있지 않다면 MovieItem 렌더링 /
+    <div className={style.container}>
+      {/* 검색어가 비어 있지 않다면 MovieItem 렌더링 /
          비어있다면 검색 결과가 없습니다 표시 */}
-        {filteredMovies.length > 0 ? (
-          filteredMovies.map((movie) => <MovieItem key={movie.id} {...movie} />)
-        ) : (
-          <p>검색 결과가 없습니다.</p>
-        )}
-      </section>
+      {filteredMovies.length > 0 ? (
+        filteredMovies.map((movie) => <MovieItem key={movie.id} {...movie} />)
+      ) : (
+        <p>검색 결과가 없습니다.</p>
+      )}
     </div>
   );
 }

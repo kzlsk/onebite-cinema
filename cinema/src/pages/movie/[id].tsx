@@ -1,3 +1,5 @@
+import style from "./movie.module.css";
+
 const mockData = {
   id: 1,
   title: "미키 17",
@@ -14,7 +16,6 @@ const mockData = {
 
 export default function Page() {
   const {
-    id,
     title,
     releaseDate,
     company,
@@ -25,17 +26,20 @@ export default function Page() {
     posterImgUrl,
   } = mockData;
   return (
-    <div>
-      <div>
+    <div className={style.container}>
+      <div
+        className={style.cover_img_container}
+        style={{ backgroundImage: `url('${posterImgUrl}')` }}
+      >
         <img src={posterImgUrl} />
       </div>
-      <div>{title}</div>
-      <div>
-        {releaseDate} / {genres} / {runtime}
+      <div className={style.title}>{title}</div>
+      <div className={style.release_date}>
+        {releaseDate} / {genres} / {runtime}분
       </div>
-      <div>{company}</div>
-      <div>{subTitle}0</div>
-      <div>{description}</div>
+      <div className={style.company}>{company}</div>
+      <div className={style.subTitle}>{subTitle}</div>
+      <div className={style.description}>{description}</div>
     </div>
   );
 }
